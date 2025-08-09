@@ -1,0 +1,8 @@
+2025-08-04 00:15:21,932 __main__ INFO:210 Creating player manager
+2025-08-04 00:15:21,932 __main__ INFO:212 Filtering for player: spotify_player
+2025-08-04 00:15:21,937 __main__ INFO:60 Initialize new player: spotify_player
+2025-08-04 00:15:21,939 __main__ DEBUG:119 Metadata changed for player spotify_player
+2025-08-04 00:15:21,939 __main__ DEBUG:94 Getting first playing player from 1 players
+2025-08-04 00:15:21,940 __main__ DEBUG:71 Writing output:  Ed Sheeran - Tenerife Sea
+2025-08-04 00:15:21,940 __main__ INFO:56 Starting main loop
+2025-08-04 00:16:31,508 __main__ INFO:20 Received signal to stop, exiting
