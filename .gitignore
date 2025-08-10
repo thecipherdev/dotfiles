@@ -1,3 +1,4 @@
 .zcompdump
 .zcompdump-cipher-5.9
 .zcompdump-cipher-5.9.zwc
+.config/tmux/plugins

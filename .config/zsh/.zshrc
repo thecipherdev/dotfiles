@@ -1,10 +1,11 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export DEV_CONFIG="$HOME/dev/dotfiles"
+export DEV="$HOME/dev/personal"
 
 ZSH_THEME="geoffgarside"
 # ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -19,7 +20,11 @@ bindkey '^n' history-search-forward
 
 fzf_nvim_tmux() {
   local selected
-  selected=$(cd ~/dev/personal && find . -type f | fzf)
+  selected=$(cd ~/dev/personal && \
+    find . -type f \
+      -not -path '*/\.git/*' \
+      -not -path '*/node_modules/*' \
+      | fzf)
   [[ -z "$selected" ]] && return
   selected="${selected#./}"
   nvim ~/dev/personal/"$selected"

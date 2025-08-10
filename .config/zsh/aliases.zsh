@@ -38,14 +38,14 @@ alias gcl="git clone"
 
 # tmux
 # alias tmux="tmux -f ${HOME}/.config/tmux/.tmux.conf"
-alias tconfig="nvim $HOME/.config/tmux/.tmux.conf"
-alias tsource="tmux source $HOME/.config/tmux/.tmux.conf"
+alias tconfig="nvim $DEV_CONFIG/.config/tmux/tmux.conf"
+alias tsource="tmux source $DEV_CONFIG/.config/tmux/tmux.conf"
 
 
 # config
-alias zconfig="cd ${HOME}/.config/zsh && nvim ${HOME}/.config/zsh/.zshrc"
-alias zsource="source ${HOME}/.config/zsh/.zshrc"
-alias hyprc="cd ${HOME}/.config/hypr && nvim ${HOME}/.config/hypr/hyprland.conf"
+alias zconfig="cd ${DEV_CONFIG}/.config/zsh && nvim ${HOME}/.config/zsh/.zshrc"
+alias zsource="source ${DEV_CONFIG}/.config/zsh/.zshrc"
+alias hyprc="cd ${DEV_CONFIG}/.config/hypr && nvim ${DEV_CONFIG}/.config/hypr/hyprland.conf"
 
 # function aliases
 copy() {
