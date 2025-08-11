@@ -4,6 +4,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 export DEV_CONFIG="$HOME/dev/dotfiles"
 export DEV="$HOME/dev/personal"
 
