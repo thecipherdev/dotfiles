@@ -12,8 +12,8 @@ alias mvim="vim | fzf"
 
 # command
 alias enblssh="eval \"$(ssh-agent -s)\""
-alias ls="eza --icons=always --hyperlink"
-alias lst="eza --icons=always -T --hyperlink"
+alias ls="eza --icons=always --hyperlink --git-ignore"
+alias lst="eza --icons=always -T --hyperlink --git-ignore"
 alias python="python3"
 alias c="clear"
 
@@ -22,6 +22,17 @@ alias c="clear"
 alias wapps="cd ${HOME}/dev/personal/code/frontend/web"
 alias mapps="cd ${HOME}/dev/personal/code/frontend/mobile"
 alias backend="cd ${HOME}/dev/personal/code/backend"
+alias work="cd ${HOME}/dev/work"
+alias gfed="cd ${HOME}/dev/work/gfed"
+alias wt="cd ${DEV}/wt"
+
+# open links
+alias ol="cut -d= -f1 '${DEV_CONFIG}/.config/zsh/links' | fzf | xargs -I{} sh -c \"grep '^{}=' '${DEV_CONFIG}/.config/zsh/links' | cut -d= -f2 | xargs xdg-open\""
+
+#DB
+pdb() {
+  psql -U "$1" -W
+}
 
 
 # git aliases
@@ -31,6 +42,9 @@ alias gs="git status --short"
 alias gc="git commit"
 alias gp="git push"
 alias gu="git pull"
+alias gwl="git worktree list"
+alias gwa="git worktree add"
+alias gwr="git worktree remove"
 alias gd="git diff"
 alias gl="git log --oneline"
 alias gb="git branch"
@@ -43,7 +57,7 @@ alias tsource="tmux source $DEV_CONFIG/.config/tmux/tmux.conf"
 
 
 # config
-alias zconfig="cd ${DEV_CONFIG}/.config/zsh && nvim ${HOME}/.config/zsh/.zshrc"
+alias zconfig="cd ${DEV_CONFIG}/.config/zsh && nvim ${DEV_CONFIG}/.config/zsh/.zshrc"
 alias zsource="source ${DEV_CONFIG}/.config/zsh/.zshrc"
 alias hyprc="cd ${DEV_CONFIG}/.config/hypr && nvim ${DEV_CONFIG}/.config/hypr/hyprland.conf"
 

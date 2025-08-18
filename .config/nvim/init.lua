@@ -218,28 +218,28 @@ require('lazy').setup({
       },
     },
   },
-  -- {
-  --   'OXY2DEV/markview.nvim',
-  --   lazy = false,
-  --   config = function()
-  --     local presets = require 'markview.presets'
-  --     require('markview.extras.checkboxes').setup()
-  --
-  --     require('markview').setup {
-  --       markdown = {
-  --         headings = presets.headings.slanted,
-  --         horizontal_rules = presets.horizontal_rules.double,
-  --         tables = presets.tables.none,
-  --       },
-  --     }
-  --   end,
-  --
-  --   -- For blink.cmp's completion
-  --   -- source
-  --   -- dependencies = {
-  --   --     "saghen/blink.cmp"
-  --   -- },
-  -- },
+  {
+    'OXY2DEV/markview.nvim',
+    lazy = false,
+    config = function()
+      local presets = require 'markview.presets'
+      require('markview.extras.checkboxes').setup()
+
+      require('markview').setup {
+        markdown = {
+          headings = presets.headings.slanted,
+          horizontal_rules = presets.horizontal_rules.double,
+          tables = presets.tables.none,
+        },
+      }
+    end,
+
+    -- For blink.cmp's completion
+    -- source
+    -- dependencies = {
+    --     "saghen/blink.cmp"
+    -- },
+  },
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
