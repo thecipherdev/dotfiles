@@ -26,6 +26,7 @@ vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
+vim.opt.colorcolumn = '120'
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -118,7 +119,7 @@ vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
 -- trim ^M
-vim.keymap.set('n', ',m', function()
+vim.keymap.set('n', '<leader>m', function()
   vim.cmd 'silent! %s/\\r//g'
 end, { desc = 'Remove carriage returns' })
 
@@ -205,6 +206,65 @@ require('lazy').setup({
         close_on_exit = true,
       }
     end,
+  },
+  -- {
+  --   'zbirenbaum/copilot.lua',
+  --   cmd = 'Copilot',
+  --   build = ':Copilot auth',
+  --   event = 'BufReadPost',
+  --   opts = {
+  --     suggestion = {
+  --       enabled = not vim.g.ai_cmp,
+  --       auto_trigger = true,
+  --       hide_during_completion = vim.g.ai_cmp,
+  --       keymap = {
+  --         accept = false, -- handled by nvim-cmp / blink.cmp
+  --         next = '<M-]>',
+  --         prev = '<M-[>',
+  --       },
+  --     },
+  --     panel = { enabled = false },
+  --     filetypes = {
+  --       markdown = true,
+  --       help = true,
+  --     },
+  --   },
+  -- },
+  {
+
+    'eero-lehtinen/oklch-color-picker.nvim',
+    event = 'VeryLazy',
+    version = '*',
+    keys = {
+      -- One handed keymap recommended, you will be using the mouse
+      {
+        '<leader>v',
+        function()
+          require('oklch-color-picker').pick_under_cursor()
+        end,
+        desc = 'Color pick under cursor',
+      },
+    },
+    ---@type oklch.Opts
+    opts = {},
+  },
+  {
+    'christoomey/vim-tmux-navigator',
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+      'TmuxNavigatorProcessList',
+    },
+    keys = {
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
   },
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -387,7 +447,14 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            sorting_strategy = 'ascending',
+            layout_config = {
+              prompt_position = 'top',
+            },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -398,6 +465,7 @@ require('lazy').setup({
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'noice')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -686,6 +754,7 @@ require('lazy').setup({
         -- clangd = {},
         gopls = {},
         pyright = {},
+        copilot = { enabled = false },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -859,9 +928,9 @@ require('lazy').setup({
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
 
-        ['<Tab>'] = { 'select_next', 'fallback' },
-        ['<S-Tab>'] = { 'select_prev', 'fallback' },
-        ['<CR>'] = { 'accept', 'fallback' },
+        -- ['<Tab>'] = { 'select_next', 'fallback' },
+        -- ['<S-Tab>'] = { 'select_prev', 'fallback' },
+        -- ['<CR>'] = { 'accept', 'fallback' },
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -920,7 +989,15 @@ require('lazy').setup({
           transparency = true,
         },
       }
-      vim.cmd.colorscheme 'rose-pine'
+      -- vim.cmd.colorscheme 'rose-pine'
+    end,
+  },
+
+  {
+    'ellisonleao/gruvbox.nvim',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'gruvbox'
     end,
   },
 
@@ -1043,10 +1120,15 @@ require('lazy').setup({
   require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.bufferline',
+  require 'kickstart.plugins.bufferline',
   -- require 'kickstart.plugins.neo-tree',
-  require 'kickstart.plugins.marlin',
+  -- require 'kickstart.plugins.marlin',
+  require 'kickstart.plugins.harpoon',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.noice',
+  require 'kickstart.plugins.ts-comments',
+  require 'kickstart.plugins.smear-cursor',
+  require 'kickstart.plugins.copilot',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.

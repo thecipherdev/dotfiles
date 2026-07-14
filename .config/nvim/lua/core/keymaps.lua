@@ -10,7 +10,7 @@ vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
 -- rename buffer
-vim.keymap.set('n', '<leader>sS', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set('n', '<leader>sS', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Rename' })
 
 vim.keymap.set('v', 'J', ":m '>+1<cr>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<cr>gv=gv")
@@ -41,3 +41,6 @@ vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerm<CR>', { desc = '[T]oggle term
 vim.keymap.set('n', '<leader>tf', '<cmd>ToggleTerm direction=float<CR>', { desc = 'Toggle [f]loating term' })
 vim.keymap.set('n', '<leader>tv', '<cmd>ToggleTerm direction=vertical size=40<CR>', { desc = 'Toggle [v]ertical term' })
 vim.keymap.set('n', '<leader>th', '<cmd>ToggleTerm direction=horizontal size=15<CR>', { desc = 'Toggle [v]ertical term' })
+
+-- noice
+vim.keymap.set('n', '<leader>nd', '<cmd>NoiceDismiss<CR>', { desc = 'Dismiss Noice Message' })

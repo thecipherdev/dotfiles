@@ -7,7 +7,7 @@ alias wybrreload="pkill -SIGUSR2 waybar"
 alias look="nwg-look"
 
 # vim 
-alias vim="nvim"
+alias vi="nvim"
 alias mvim="vim | fzf"
 
 # command
@@ -16,6 +16,7 @@ alias ls="eza --icons=always --hyperlink --git-ignore"
 alias lst="eza --icons=always -T --hyperlink --git-ignore"
 alias python="python3"
 alias c="clear"
+alias oc="opencode"
 
 
 # project folders 
@@ -46,9 +47,33 @@ alias gwl="git worktree list"
 alias gwa="git worktree add"
 alias gwr="git worktree remove"
 alias gd="git diff"
-alias gl="git log --oneline"
+alias gl="git log --all --graph --decorate --oneline"
 alias gb="git branch"
 alias gcl="git clone"
+
+alias grb-preview='git branch --format="%(refname:short)" | grep -v "^main$"'
+alias grb='git branch --format="%(refname:short)" | grep -v "^main$" | xargs -r git branch -d'
+# danger
+grb_force() {
+  branches=$(git branch --format="%(refname:short)" | grep -v "^main$")
+
+  if [[ -z "$branches" ]]; then
+    echo "No local branches to delete."
+    return 0
+  fi
+
+  echo "⚠️  The following local branches will be DELETED:"
+  echo "$branches"
+  echo
+  read "confirm?Are you sure? (y/N): "
+
+  if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    echo "$branches" | xargs git branch -D
+    echo "✅ Done."
+  else
+    echo "❌ Aborted."
+  fi
+}
 
 # tmux
 # alias tmux="tmux -f ${HOME}/.config/tmux/.tmux.conf"

@@ -7,6 +7,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export DEV_CONFIG="$HOME/dev/dotfiles"
 export DEV="$HOME/dev/personal"
+export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH" # remove if something bad happens
 
 ZSH_THEME="geoffgarside"
 # ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -105,5 +106,11 @@ eval "$(pyenv init - zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+. $HOMEBREW_PREFIX/etc/profile.d/z.sh
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 fastfetch
